@@ -1,22 +1,18 @@
 ############################################################
 # Dockerfile to build Nginx Installed Containers
-# Based on alpine
+# Based on Alpine
 ############################################################
-
 
 # Set the base image to Alpine
 FROM alpine
 
 # File Author / Maintainer
-MAINTAINER Karthik Gaekwad
+MAINTAINER John "JB" Brock (peppertech@gmail.com)
 
 # Install Nginx
 FROM nginx
 COPY nginx/nginx.conf /etc/nginx/nginx.conf
 COPY nginx/default.conf /etc/nginx/conf.d/default.conf
-
-#RUN apt-get update -q && apt-get install nginx
-#rm -rf /var/cache/apk/*
 
 RUN mkdir -p /tmp/nginx/client-body
 
