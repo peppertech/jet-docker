@@ -5,17 +5,21 @@
 
 
 # Set the base image to Alpine
-FROM alpine:3.2
+FROM alpine
 
 # File Author / Maintainer
 MAINTAINER Karthik Gaekwad
 
 # Install Nginx
-RUN apk add --update nginx && rm -rf /var/cache/apk/*
-RUN mkdir -p /tmp/nginx/client-body
-
+FROM nginx
 COPY nginx/nginx.conf /etc/nginx/nginx.conf
 COPY nginx/default.conf /etc/nginx/conf.d/default.conf
+
+#RUN apt-get update -q && apt-get install nginx
+#rm -rf /var/cache/apk/*
+
+RUN mkdir -p /tmp/nginx/client-body
+
 COPY website /usr/share/nginx/html
 
 # Expose ports
